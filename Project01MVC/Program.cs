@@ -1,5 +1,7 @@
+using Demo.BusinessLogicLayer.Intrerfaces;
 using Demo.BusinessLogicLayer.Repository;
 using Demo.DataAccessLayer.Data;
+using Demo.DataAccessLayer.Models;
 using Microsoft.Data.SqlClient;
 using Microsoft.EntityFrameworkCore;
 
@@ -19,7 +21,12 @@ namespace Mvc.PresentationLayer
             {
                 option.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection"));
             });
+
             builder.Services.AddScoped<IDepartmentRepository, DepartmentRepository>();
+            builder.Services.AddScoped<IEmployeeRepository, EmployeeRepository>();
+
+            //builder.Services.AddScoped<IGenaricRepository<Department>, GenaricRepository<Department>>();
+
 
 
             var app = builder.Build();
